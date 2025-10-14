@@ -1,5 +1,5 @@
 // src/components/MainLayout.jsx
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../css/MainLayout.css';
 import { IoSearchSharp, IoChevronDown, IoChevronUp } from 'react-icons/io5';
@@ -30,14 +30,19 @@ const MainLayout = ({ children }) => {
     const [searchArtists, setSearchArtists] = useState([]);
     const [searchAlbums, setSearchAlbums] = useState([]);
     const [searchTracks, setSearchTracks] = useState([]);
+    const [isSearching, setIsSearching] = useState(false);
+
+    // 디바운스 타이머/취소용
+    const debounceRef = useRef(null);
+    const abortRef = useRef(null);
 
     // ─── 전역 컨텍스트에서 유저 & 플레이리스트 ─────────────────────────
     const {
         user,
         handleLogout,
         loading,
-        myPlaylists,      // 전역 플레이리스트
-        fetchMyPlaylists, // 전역 갱신 함수
+        myPlaylists,
+        fetchMyPlaylists,
     } = useContext(UserContext);
 
     // ─── 닉네임·프로필 불러오기 ───────────────────────────────────────
@@ -47,7 +52,6 @@ const MainLayout = ({ children }) => {
             setProfileImage('');
             return;
         }
-        // 병렬 호출
         Promise.all([
             axios.get('/api/mypage/nickname', {
                 headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
@@ -62,7 +66,7 @@ const MainLayout = ({ children }) => {
             })
             .catch((err) => console.error('프로필 로드 실패', err));
 
-        fetchMyPlaylists(); // 로그인되면 사이드바 갱신
+        fetchMyPlaylists();
     }, [user.isLoggedIn, fetchMyPlaylists]);
 
     if (loading) return <div>로딩 중...</div>;
@@ -70,27 +74,72 @@ const MainLayout = ({ children }) => {
     const handleLogin = () => navigate('/login');
     const handleSignup = () => navigate('/signup/home');
 
-    // ─── 검색 핸들러 ────────────────────────────────────────────────
-    const onSearchSubmit = async (e) => {
-        e.preventDefault();
-        const kw = searchInput.trim();
+    // ─── 입력 즉시 자동 검색(디바운스 300ms) ───────────────────────────
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+        const kw = searchInput.ritm();
+
+        // 이전 타이머/요청 취소
+        if (debounceRef.current) clearTimeout(debounceRef.current);
+        if (abortRef.current) abortRef.current.abort();
+
+        // 입력이 비면 결과/로딩 초기화
         if (!kw) {
+            setIsSearching(false);
             setSearchArtists([]);
             setSearchAlbums([]);
             setSearchTracks([]);
             return;
         }
-        try {
-            const res = await axios.get('h/api/search', { params: { query: kw } });
-            setSearchArtists(res.data.artists || []);
-            setSearchAlbums(res.data.albums || []);
-            setSearchTracks(res.data.tracks || []);
-        } catch (err) {
-            console.error('검색 실패', err);
+
+        // 너무 짧은 검색어는 패스(원하면 1자로 줄여도 됨)
+        if (kw.length < 2) {
+            setIsSearching(false);
             setSearchArtists([]);
             setSearchAlbums([]);
             setSearchTracks([]);
+            return;
         }
+
+        // 디바운스 후 검색 실행
+        debounceRef.current = setTimeout(async () => {
+            try {
+                setIsSearching(true);
+                const controller = new AbortController();
+                abortRef.current = controller;
+
+                const res = await axios.get('/api/search', {
+                    params: { query: kw },
+                    signal: controller.signal,
+                });
+
+                setSearchArtists(res.data?.artists || []);
+                setSearchAlbums(res.data?.albums || []);
+                setSearchTracks(res.data?.tracks || []);
+            } catch (err) {
+                // Abort가 아닌 경우만 로그
+                if (err.name !== 'CanceledError' && err.message !== 'canceled') {
+                    console.error('검색 실패', err);
+                }
+                setSearchArtists([]);
+                setSearchAlbums([]);
+                setSearchTracks([]);
+            } finally {
+                setIsSearching(false);
+            }
+        }, 300);
+
+        // cleanup
+        return () => {
+            if (debounceRef.current) clearTimeout(debounceRef.current);
+            if (abortRef.current) abortRef.current.abort();
+        };
+    }, [searchInput]);
+
+    // (엔터로도 검색되게 유지하고 싶으면 남겨둠: 드롭다운은 이미 자동으로 뜸)
+    const onSearchSubmit = (e) => {
+        e.preventDefault();
+        // 엔터 시 굳이 추가 호출 안 하고 현재 결과 유지
     };
 
     const clearSearch = () => {
@@ -114,7 +163,7 @@ const MainLayout = ({ children }) => {
         clearSearch();
     };
 
-    // ─── 플레이리스트 생성 후: 전역 이벤트 브로드캐스트 + 사이드바 갱신 ─────
+    // ─── 플레이리스트 생성 ───────────────────────────────────────────
     const handleCreatePlaylist = async ({ playlistName, playlistDescription, playlistCover }) => {
         const formData = new FormData();
         formData.append(
@@ -131,19 +180,12 @@ const MainLayout = ({ children }) => {
                 },
             });
 
-            // 서버에서 방금 생성된 객체를 돌려준다고 가정
             const created = res?.data;
-
-            // 1) 생성 성공 직후 전역 이벤트 브로드캐스트
-            //    MyPlaylistsPage에서 이 이벤트를 받아 즉시 목록에 prepend 합니다.
             if (created && created.playlistId) {
                 window.dispatchEvent(new CustomEvent('PLAYLIST_CREATED', { detail: created }));
             } else {
-                // 혹시 생성 객체를 안 주면, 최소한 목록 갱신 신호라도 쏘기
                 window.dispatchEvent(new Event('PLAYLISTS_UPDATED'));
             }
-
-            // 2) 사이드바(내 플레이리스트)도 즉시 갱신
             await fetchMyPlaylists();
 
             setIsModalOpen(false);
@@ -153,6 +195,12 @@ const MainLayout = ({ children }) => {
             CustomToast('플레이리스트 생성에 실패했습니다.', 'error');
         }
     };
+
+    const showDropdown =
+        isSearching ||
+        (searchArtists && searchArtists.length) ||
+        (searchAlbums && searchAlbums.length) ||
+        (searchTracks && searchTracks.length);
 
     return (
         <div className="main-layout">
@@ -178,9 +226,16 @@ const MainLayout = ({ children }) => {
                             autoComplete="off"
                         />
                     </form>
-                    {(searchArtists.length || searchAlbums.length || searchTracks.length) > 0 && (
+
+                    {showDropdown ? (
                         <div className="search-results-dropdown">
-                            {searchArtists.length > 0 && (
+                            {isSearching && (
+                                <div className="search-section">
+                                    <div className="section-header">검색 중…</div>
+                                </div>
+                            )}
+
+                            {!isSearching && searchArtists.length > 0 && (
                                 <div className="search-section">
                                     <div className="section-header">아티스트</div>
                                     {searchArtists.map((a) => (
@@ -199,7 +254,8 @@ const MainLayout = ({ children }) => {
                                     ))}
                                 </div>
                             )}
-                            {searchAlbums.length > 0 && (
+
+                            {!isSearching && searchAlbums.length > 0 && (
                                 <div className="search-section">
                                     <div className="section-header">앨범</div>
                                     {searchAlbums.map((al) => (
@@ -214,7 +270,8 @@ const MainLayout = ({ children }) => {
                                     ))}
                                 </div>
                             )}
-                            {searchTracks.length > 0 && (
+
+                            {!isSearching && searchTracks.length > 0 && (
                                 <div className="search-section">
                                     <div className="section-header">트랙</div>
                                     {searchTracks.map((tr) => (
@@ -229,7 +286,7 @@ const MainLayout = ({ children }) => {
                                 </div>
                             )}
                         </div>
-                    )}
+                    ) : null}
                 </div>
 
                 <div className="top-bar-profile">
@@ -328,7 +385,7 @@ const MainLayout = ({ children }) => {
                 isOpen={isModalOpen}
                 onClose={() => {
                     setIsModalOpen(false);
-                    fetchMyPlaylists(); // 혹시 모달 내부에서 상태가 바뀌었으면 사이드바 동기화
+                    fetchMyPlaylists();
                 }}
                 onSubmit={handleCreatePlaylist}
             />
