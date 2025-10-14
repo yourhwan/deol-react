@@ -1,0 +1,152 @@
+/* 트랙 드롭다운 */
+
+.track-dropdown-track {
+    position: relative;
+}
+
+.dropdown-trigger-track {
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: #ccc;
+}
+
+.chart-dropdown-menu-track-top {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 0.25rem 0;
+    width: 160px;
+    z-index: 9999 !important;
+    pointer-events: auto;
+}
+
+.chart-playlist-submenu-item-top {
+
+}
+
+.chart-playlist-submenu-item-top {
+    padding: 6px 12px;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.chart-playlist-submenu-item-top:hover {
+    background-color: #444;
+    color: #ccc;
+}
+
+.playlist-submenu-left-top {
+    position: absolute;
+    top: -10%;
+    left: 100%;
+    margin-right: 1px;
+    background: #222222;
+    border: 1px solid #444;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    padding: 6px;
+    min-width: 160px;
+    z-index: 9999;
+}
+
+.chart-dropdown-menu-track {
+    position: absolute;
+    top: 30px;
+    right: 2%;
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 0.25rem 0;
+    width: 160px;
+    z-index: 9999 !important;
+    pointer-events: auto;
+}
+
+.chart-dropdown-menu-item-track {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #ccc;
+    position: relative;
+}
+
+.chart-dropdown-menu-item-track:hover {
+    background-color: #333;
+}
+
+/* 서브 드롭다운 (좌측) */
+
+.chart-dropdown-menu-item-track .playlist-submenu {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    margin-right: 8px;
+    background: #222222;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 6px 0;
+    min-width: 160px;
+    display: none;
+    z-index: 10000;
+}
+
+.chart-dropdown-menu-item-track:hover .playlist-submenu {
+    display: block;
+}
+
+/* 이중 드롭다운 서브 메뉴 (좌측) */
+
+.chart-playlist-submenu-top-left { /*상단 전체 재생 옆 드롭다운*/
+    position: absolute;
+    top: 65%;
+    left: 47%;
+    margin-right: 1px;
+    background: #222222;
+    border: 1px solid #444;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    padding: 6px;
+    min-width: 160px;
+    z-index: 9999;
+}
+
+.chart-playlist-submenu-left {
+    position: absolute;
+    top: -10%;
+    right: 100%;
+    margin-right: 1px;
+    background: #222222;
+    border: 1px solid #444;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    padding: 6px;
+    min-width: 160px;
+    z-index: 9999;
+}
+
+.playlist-submenu-item {
+    padding: 6px 12px;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.playlist-submenu-item:hover {
+    background-color: #444;
+    color: #ccc;
+}
+
+/* 삼각형 좌우 대칭 */
+
+.chart-dropdown-menu-item-track .arrow {
+    position: absolute;
+    top: 50%;
+    right: -8px;
+    transform: translateY(-50%) rotate(180deg);
+    font-size: 0.75rem;
+    color: #ccc;
+}

@@ -1,0 +1,235 @@
+/* 페이지 전체*/
+body {
+    background-color: #121212;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* 전체 페이지 스크롤 숨기기 */
+}
+
+.container-fluid {
+    height: 100%; /* height를 auto로 설정하여 페이지 높이에 맞게 조정 */
+    min-height: 100vh; /* 최소 높이를 100vh로 설정하여 화면을 꽉 채움 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+    overflow: auto; /* 내부 콘텐츠가 많으면 스크롤 가능 */
+}
+
+.vh-100 {
+    height: 100vh; /* 뷰포트의 전체 높이 */
+}
+
+
+
+/* 최상단 로고 */
+.logo-container-signup {
+    text-align: center;
+    max-width: 100%; /* 이미지가 컨테이너를 초과하지 않도록 */
+    top: 20px;
+    height: auto; /* 이미지 비율 유지 */
+    margin-bottom: 70px; /* 로고와 입력 필드 사이의 간격을 70px로 설정 */
+    /*padding-top: 80px;*/
+}
+
+.logo-circle,
+.logo-main {
+    margin-top: 35px;
+}
+
+/* 폼 스타일 */
+.signup-form {
+    display: flex;
+    flex-direction: column;   /* 입력 필드들이 수직으로 배치 */
+    align-items: center;      /* 수평 중앙 정렬 */
+    justify-content: center;  /* 수직 중앙 정렬 */
+    width: 100%;              /* 가로로 꽉 채우기 */
+    max-width: 100%;         /* 폼의 최대 너비 설정 */
+    margin: 0 auto;           /* 중앙 정렬 */
+    box-sizing: border-box;   /* 패딩과 테두리를 포함한 크기 계산 */
+    padding: 20px;            /* 폼의 내부 여백 */
+    overflow: auto; /* 폼 내부에서 스크롤이 생기도록 */
+}
+
+/* 회원가입의 모든 인풋 요소를 감싼 div */
+.input-container {
+    display: flex;
+    flex-direction: column;   /* 제목과 입력 필드를 수직으로 배치 */
+    align-items: flex-start;  /* 제목과 입력 필드를 왼쪽으로 정렬 */
+    width: 100%;              /* 가로로 꽉 채우기 */
+    max-width: 300px;         /* 최대 너비 설정 */
+}
+
+/* 모든 인풋 항목의 제목 */
+.signupform-title {
+    margin-bottom: 5px;       /* 제목과 입력 필드 사이의 간격 */
+    color: #ffffff;           /* 제목 텍스트 색상 */
+    font-size: 16px;          /* 제목 텍스트 크기 */
+}
+
+/* 회원가입 모든 인풋 공통 */
+input {
+    background-color: #121212; /* body 배경색과 동일한 색상 */
+    color: #ffffff;            /* 텍스트 색상 */
+    border: 1px solid #727272; /* 테두리 색상 */
+    padding: 10px;            /* 내부 여백 */
+    width: 100%;              /* input 필드 너비를 폼의 너비에 맞춤 */
+    box-sizing: border-box;   /* 패딩과 테두리를 포함한 크기 계산 */
+    border-radius: 5px;       /* 모서리 둥글게 */
+}
+
+
+
+/* 성별 div */
+.gender-options {
+    display: flex;
+    gap: 10px;
+}
+
+/* 성별 버튼 */
+.gender-btn {
+    padding: 10px 20px;
+    border: 1px solid #727272;
+    border-radius: 5px;
+    background-color: #1F1F1F;
+    color: #A7A7A7;
+    cursor: pointer;
+}
+
+/* 성별 선택 되어진 버튼 */
+.gender-btn.selected {
+    background-color: #8C3131;
+    font-weight: bold;
+}
+
+/* 회원가입 버튼 */
+.signup-btn {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    padding: 10px;
+    font-weight: bolder;
+    height: 100%;
+    width: 100%;
+    border: none;
+    border-radius: 40px;
+    background-color: #8C3131;
+    color: white;
+    cursor: pointer;
+}
+
+/* 이메일 인풋과 인증코드 인풋을 감싸고 있는 div */
+.email-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* 이메이 입력 인풋 */
+.email-container input {
+    background-color: #121212;
+    width: 100%;
+    padding-right: 130px; /* 버튼 너비를 고려하여 패딩 추가 */
+    outline: none;
+}
+
+/* 이메일 인증 버튼 */
+.email-container .verify-btn {
+    position: absolute;
+    right: 10px; /* 버튼의 오른쪽 여백 */
+    padding: 0px 10px 10px 0px;
+    font-size: 14px;
+    background-color: #121212; /* 버튼 배경색 */
+    color: #A7A7A7; /* 버튼 글자색 */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 자동 완성 스타일 조정 */
+.email-container input:-webkit-autofill {
+    background-color: #121212; /* 자동 완성으로 인한 배경색 변경 방지 */
+}
+
+
+
+/* 항목별제목 */
+.signupform-title {
+    font-weight: bold;
+    margin-bottom: 5px; /* 제목과 입력 필드 사이의 간격을 15px로 설정 */
+}
+
+/* 입력 필드 간의 간격 조정 */
+.input-container input {
+    margin-bottom: 13px; /* 입력 필드와 다음 요소 사이의 간격을 20px로 설정 */
+}
+
+/* 버튼 간의 간격 조정 */
+.gender-options {
+    margin-bottom: 20px; /* 성별 버튼과 다음 요소 사이의 간격을 20px로 설정 */
+}
+
+.email-container {
+}
+
+.error-message {
+    font-size: 12px;
+    white-space: pre-line; /* 줄바꿈을 지원 */
+    color: red; /* 에러 메시지 색상 */
+    min-height: 20px
+}
+
+.success-message {
+    font-size: 12px;
+    white-space: pre-line; /* 줄바꿈을 지원 */
+    min-height: 20px;
+    color: green;
+}
+
+/* 인증 코드 입력란과 버튼을 포함하는 컨테이너 */
+.code-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%; /* 입력란의 너비를 100%로 설정 */
+}
+
+/* 인증 코드 입력란 */
+.code-container input {
+    background-color: #121212;
+    width: 100%;
+    padding-right: 100px; /* 버튼의 너비를 고려하여 패딩 추가 */
+    outline: none;
+    border-radius: 5px; /* 모서리 둥글게 */
+}
+
+/* 인증 확인 버튼 */
+.code-container .verify-btn {
+    position: absolute;
+    right: 10px; /* 버튼의 오른쪽 여백 */
+    padding: 0px 10px 10px 0px;
+    font-size: 14px;
+    background-color: #121212;
+    color: #A7A7A7;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 에러/성공 메시지 스타일 */
+.error-message, .success-message, .message {
+    min-height: 20px; /* 메시지의 최소 높이 설정 */
+    font-size: 12px;
+    margin-top: -5px; /* 메시지 요소의 위쪽 마진을 제거 */
+    color: red;
+    white-space: pre-line; /* 줄바꿈 지원 */
+}
+
+
+/* 성공 메시지 스타일 */
+.success-message {
+    color: green;
+    min-height: 20px
+}

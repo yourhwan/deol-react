@@ -1,0 +1,124 @@
+/* 배경 오버레이 */
+.playlistCreate-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 중앙 모달 박스 */
+.playlistCreate-container {
+    background-color: #2c2c2c;
+    color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.playlistCreate-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* 커버 업로드 영역 */
+.playlistCreate-cover-upload-box {
+    width: 100%;
+    height: 300px;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    border: 2px dashed #555;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.playlistCreate-cover-upload-box:hover {
+    border-color: #888;
+}
+
+.playlistCreate-cover-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.playlistCreate-upload-placeholder {
+    text-align: center;
+    color: #ccc;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 입력 및 텍스트 영역 */
+.playlistCreate-input,
+.playlistCreate-textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: #1f1f1f;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.playlistCreate-textarea {
+    min-height: 100px;
+    resize: none;
+}
+
+/* 버튼 영역 */
+.playlistCreate-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+/* 버튼 공통 스타일 - 작게, 간결하게 */
+.playlistCreate-button {
+    padding: 6px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* 버튼 색상 스타일 */
+.playlistCreate-button.confirm {
+    background-color: #444;
+    color: #ccc;
+}
+
+.playlistCreate-button.cancel {
+    background-color: #444;
+    color: #ccc;
+}
+
+/* 메시지 */
+.playlistCreate-error {
+    color: red;
+    text-align: center;
+    font-size: 14px;
+}
+
+.playlistCreate-success {
+    color: lightgreen;
+    text-align: center;
+    font-size: 14px;
+}

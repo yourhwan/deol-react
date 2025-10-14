@@ -1,0 +1,458 @@
+body {
+    padding-bottom: 80px; /* FooterPlayer 높이만큼 여백 추가 */
+    font-family: Arial, sans-serif;
+    background-color: black !important;
+}
+
+.main-content {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    height: auto; /* 콘텐츠에 따라 높이 조정 */
+}
+
+/* 앨범상세 상단 섹션 */
+
+    /* 앨범 헤더 스타일 */
+    .album-header {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        margin-top: 11px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        margin-right: 15px;
+        width: 100%; /* 기본적으로 부모 요소의 전체 너비 */
+        height: 350px; /* 고정된 높이 */
+        box-sizing: border-box; /* 패딩 포함한 크기 설정 */
+        background: linear-gradient(to bottom, #c5b094, #000); /* 위쪽은 밝은 색, 아래쪽은 검은색 */
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .album-header img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-right: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .all-play-button {
+        background-color: inherit;
+        border: none;
+        font-size: 40px;
+        margin: 0px 0px 0px 0px;
+    }
+
+    .album-info {
+        flex: 1;
+    }
+
+    .album-info h1 {
+        font-size: 40px;
+        margin: 0 0 15px;
+        color: white;
+        font-weight: bold;
+    }
+
+    .album-info p {
+        font-size: 12px;
+        margin: 5px 0;
+        color: #e0e0e0;
+    }
+
+    .album-info p.artist-name {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .album-info p.artist-name img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid white;
+    }
+
+    /* 트랙 섹션 스타일 */
+    .album-details-tracks-section {
+        margin-top: 20px;
+        margin-left: -15px;
+        background-color: black;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        overflow: visible; /* 드롭다운이 잘리지 않도록 설정 */
+    }
+
+    .album-details-tracks-section h2 {
+        font-size: 24px;
+        color: white;
+        border-bottom: 2px solid #444;
+        margin-bottom: 0px;
+        padding-bottom: 5px;
+    }
+
+    .album-details-tracks-list {
+        list-style: none;
+        padding: 10px 0px 10px 0px;
+        margin: 10px 0px 10px 0px;
+    }
+
+    .album-details-tracks-list li {
+        display: flex; /* Flexbox 사용 */
+        justify-content: space-between; /* 좌우 끝에 요소 배치 */
+        align-items: inherit; /* 세로 가운데 정렬 */
+        padding: 0px 0px 10px 0px;
+        border-bottom: 1px solid #333;
+        color: white;
+        transition: background-color 0.3s;
+    }
+
+
+
+    .track-info {
+        gap: 10px;
+        display: flex;
+        align-items: center; /* 세로 가운데 정렬 */
+        justify-content: space-between; /* 자식 요소 간 간격 균등 배치 */
+        margin: 5px;
+    }
+
+    .track-info-p {
+        font-weight: bold;
+        color: white;
+        text-align: left;
+        max-width: 100%; /* 부모 요소를 넘어가지 않도록 제한 */
+        vertical-align: inherit;
+        margin: 0px 0px 0px 0px !important;
+        display: inline-block; /* 너비가 내용에 따라 자동으로 조정됨 */
+        overflow: auto; /* 텍스트가 너무 길 경우 숨김 처리 */
+        white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    }
+
+    .track-title {
+        margin-left: 20px;
+        white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 2; /* 고정된 비율 */
+    }
+
+    .track-artist {
+        font-size: 14px;
+        color: #bbb;
+        margin-left: auto;
+        flex: 1; /* 고정된 비율 */
+        text-align: left; /* 왼쪽 정렬 */
+    }
+
+    .track-duration {
+        color: white;
+        margin-left: auto;
+        flex: 1; /* 고정된 비율 */
+        text-align: center; /* 가운데 정렬 */
+    }
+
+    .play-button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        padding: 5px;
+        transition: color 0.3s;
+        text-align: right;
+        margin-right: 10px;
+        margin-left: 10px;
+        width: 30px;
+        display: inline-block;
+    }
+
+    .play-button:hover {
+        color: #f00; /* 재생 버튼 hover 시 빨간색 강조 */
+    }
+
+    .track-item .track-duration {
+        font-size: 14px;
+        color: #bbb;
+    }
+
+    .track-item {
+        font-size: 16px;
+        color: #aaa;
+        cursor: pointer;
+        transition: color 0.3s;
+        position: relative; /* 드롭다운 메뉴를 기준으로 배치 */
+        overflow: visible; /* 드롭다운이 잘리지 않도록 설정 */
+    }
+
+    .track-item :hover {
+        color: white;
+    }
+
+    .more-options {
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        padding: 5px;
+        text-align: center;
+        appearance: none;
+    }
+
+    .more-options option {
+        background-color: black;
+        color: white;
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .more-options:hover {
+        border-color: #888;
+    }
+
+
+    /* 디스코그래피 섹션 */
+    .discography {
+        margin-top: 40px;
+        padding-bottom: 40px;
+        overflow: visible; /* 오버플로를 숨기지 않음 */
+        position: relative; /* 레이아웃에 포함되도록 설정 */
+    }
+
+    .discography h2 {
+        font-size: 20px;
+        font-weight: bolder;
+        margin-bottom: 15px;
+        color: white;
+        border-bottom: 2px solid #444;
+        padding-bottom: 10px;
+    }
+
+    .other-album-list {
+        display: flex;
+        gap: 20px;
+        overflow-x: scroll; /* 가로 스크롤 가능 */
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        position: relative; /* 부모 레이아웃에 포함 */
+        -ms-overflow-style: none; /* IE와 Edge에서 스크롤바 숨기기 */
+        scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+    }
+
+    .other-album-list::-webkit-scrollbar {
+        display: none; /* Chrome, Safari에서 스크롤바 숨기기 */
+    }
+
+    .album-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background-color: inherit;
+        border-radius: 10px;
+        padding: 10px;
+        width: 150px;
+        transition: transform 0.3s ease, box-shadow 0.3s;
+    }
+
+    .album-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .other-album-cover {
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border-radius: 10%;
+        border: 2px solid #555;
+        transition: border-color 0.3s;
+    }
+
+    .other-album-cover:hover {
+        border-color: #888;
+    }
+
+    .other-album-title {
+        font-size: 16px;
+        color: #ddd;
+        font-weight: bold;
+    }
+
+    /* 메인 컨텐츠 스크롤 */
+    .album-details-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh; /* 화면 전체 높이 */
+        margin-left: -15px;
+        overflow-y: auto; /* 세로 스크롤 활성화 */
+        scrollbar-width: none; /* Firefox: 스크롤바 숨기기 */
+        -ms-overflow-style: none; /* IE와 Edge에서 스크롤바 숨기기 */
+    }
+
+    .album-details-container::-webkit-scrollbar {
+        display: none; /* Chrome, Safari에서 스크롤바 숨기기 */
+    }
+
+
+
+
+    .audio-player {
+        position: relative; /* 부모 컨테이너의 레이아웃에 포함 */
+        text-align: center;
+        width: 100%; /* 부모 너비에 맞게 설정 */
+        margin-top: 20px; /* 적절한 여백 */
+    }
+
+
+
+
+    /* 추가 */
+    /* 드롭다운 서브 메뉴 */
+.dropdown-trigger {
+    margin-right: 20px;
+    margin-left: 20px;
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    background-color: #252525;
+    border: 1px solid #727272 !important;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.85rem !important;
+}
+
+.dropdown-menu-list {
+    padding: 6px 12px;
+    color: #ccc !important;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.dropdown-menu-list:hover {
+    background-color: #333;
+}
+
+/* 서브 메뉴 */
+.playlist-submenu {
+    position: absolute;
+    top: -25%;
+    right: 100%;
+    background-color: #252525;
+    border-radius: 6px;
+    padding: 6px;
+    margin-left: 4px;
+    z-index: 20;
+    min-width: 150px;
+    border: 1px solid #727272;
+}
+
+.playlist-submenu-item {
+    padding: 6px 10px;
+    color: #ccc;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.playlist-submenu-item:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+.playlist-All-add-button {
+    background-color: inherit;
+    border: none;
+    margin-bottom: -30px;
+}
+
+.album-dropdown {
+    position: absolute;
+    left: 100px;
+    top: 50px;
+    width: 100px !important;
+    border: 1px solid #727272;
+}
+
+.playlist-submenu-right {
+    position: absolute;
+    top: -30%;
+    left: 100%; /* 오른쪽에 표시 */
+    background-color: #252525;
+    border-radius: 6px;
+    padding: 6px;
+    margin-left: 0px;
+    z-index: 20;
+    min-width: 155px;
+}
+
+/* 공통 토스트 스타일 */
+.toast-confirm-container {
+    background-color: #121212; /* 기존 토스트 배경색과 동일 */
+    color: #fff;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+/* 안내 문구 스타일 */
+.toast-confirm-message {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+/* 버튼 영역 레이아웃 */
+.toast-confirm-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* 확인 버튼 스타일 */
+.toast-confirm-button {
+    padding: 6px 12px;
+    border-radius: 5px;
+    background-color: #f87171;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* 취소 버튼 스타일 */
+.toast-cancel-button {
+    padding: 6px 12px;
+    border-radius: 5px;
+    background-color: #d1d5db;
+    color: #121212 !important;
+    border: none;
+    cursor: pointer;
+}
+
+.toast-confirm-wrapper {
+    background-color: #121212 !important; /* 어두운 배경 */
+    border-radius: 8px !important;
+}
+
+.toast-confirm-body {
+    color: #fff !important;
+}

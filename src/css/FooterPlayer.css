@@ -1,0 +1,238 @@
+/* FooterPlayer.css */
+.footer-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #111;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.footer-player-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 300px;
+}
+
+.footer-album-cover {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.footer-track-info {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    overflow: hidden;
+}
+
+.footer-track-title,
+.footer-track-artist {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.footer-player-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-progress-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 1000%;
+    max-width: 1000px;
+    margin-top: 5px;
+
+}
+
+.footer-progress-bar {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    outline: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.footer-progress-bar::-webkit-slider-runnable-track {
+    height: 6px;
+    background: #777;
+    border-radius: 3px;
+}
+
+.footer-progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #1db954;
+    border-radius: 50%;
+    margin-top: -3px;
+    cursor: pointer;
+}
+
+.footer-progress-bar::-moz-range-track {
+    height: 6px;
+    background: #777;
+    border-radius: 3px;
+}
+
+.footer-progress-bar::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #1db954;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.footer-player-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 150px;
+}
+
+.footer-control-button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.footer-volume-slider {
+    -webkit-appearance: none;
+    width: 150px;
+    height: 6px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.footer-volume-slider::-webkit-slider-runnable-track {
+    height: 6px;
+    background: #555;
+    border-radius: 3px;
+}
+
+.footer-volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #ccc;
+    border-radius: 50%;
+    margin-top: -3px;
+    cursor: pointer;
+}
+
+.footer-volume-slider::-moz-range-track {
+    height: 6px;
+    background: #555;
+    border-radius: 3px;
+}
+
+.footer-volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.current-playlist-icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    transition: color 0.2s;
+}
+
+.current-playlist-icon-button:hover {
+    color: #1db954;
+}
+
+.footer-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #111;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.footer-player-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 300px;
+}
+
+.footer-album-cover {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.footer-track-info {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    overflow: hidden;
+}
+
+.marquee-container {
+    position: relative;
+    overflow: hidden;
+    height: 1.2em;
+}
+
+.marquee-container span {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.marquee-container.active span {
+    padding-left: 100%;
+    animation: marquee 8s linear infinite;
+}
+
+.marquee-container.active:hover span {
+    animation-play-state: paused;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}

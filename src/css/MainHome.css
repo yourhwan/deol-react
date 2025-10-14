@@ -1,0 +1,256 @@
+/* MainHome.css */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* .main-content와 동일하게 검은색 */
+}
+
+/* 메인 컨텐츠 */
+.main-content {
+    background-color: black;
+
+}
+
+/* 메인 홈 컨테이너 */
+.main-home-container {
+    padding: 10px;
+    margin-left: -30px;  /* 사이드바 너비에 맞춰서 */
+    margin-top: 0px;    /* 상단바 높이에 맞춰서 */
+    background: #0000;
+    border: none;
+    overflow-y: auto;
+    display: flex;
+    height: 88.5vh;
+    flex-direction: column; /* 수직 방향으로 정렬 */
+    gap: 20px; /* 항목 간의 간격 */
+    -ms-overflow-style: none; /* IE와 Edge에서 스크롤바 숨기기 */
+}
+
+.main-home-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari에서 스크롤바 숨기기 */
+}
+
+/* 공통 섹션 스타일 */
+section {
+    margin-bottom: 20px;
+}
+
+section h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: white;
+    border-bottom: 2px solid #444;
+    padding-bottom: 10px;
+}
+
+/* 인기 아티스트 섹션 */
+.popular-artists {
+    margin-top: 10px;
+    background-color: inherit;
+    color: white;
+    border-radius: 0px;
+}
+
+.artist-list {
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll; /* 가로 스크롤 가능 */
+    padding-bottom: 10px;
+    flex-wrap: nowrap;
+    -ms-overflow-style: none; /* IE와 Edge에서 스크롤바 숨기기 */
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+}
+
+.artist-list::-webkit-scrollbar {
+    display: none; /* Chrome, Safari에서 스크롤바 숨기기 */
+}
+
+.artist-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: inherit;
+    border-radius: 10px;
+    padding: 10px;
+    width: 150px;
+    transition: transform 0.3s ease, box-shadow 0.3s;
+}
+
+.artist-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.artist-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 2px solid #555;
+    transition: border-color 0.3s;
+}
+
+.artist-image img:hover {
+    border-color: #888;
+}
+
+.artist-name {
+    font-size: 16px;
+    color: #ddd;
+}
+
+section {
+    margin-left: 10px;
+}
+
+/* 인기 앨범 섹션 */
+.album-list {
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll; /* 가로 스크롤 가능 */
+    padding-bottom: 10px;
+    -ms-overflow-style: none; /* IE와 Edge에서 스크롤바 숨기기 */
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+}
+
+.album-list::-webkit-scrollbar {
+    display: none; /* Chrome, Safari에서 스크롤바 숨기기 */
+}
+
+.album-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: inherit;
+    border-radius: 10px;
+    padding: 10px;
+    width: 150px;
+    transition: transform 0.3s ease, box-shadow 0.3s;
+}
+
+.album-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.album-image img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 10%;
+    border: 2px solid #555;
+    transition: border-color 0.3s;
+}
+
+.album-image img:hover {
+    border-color: #888;
+}
+
+.album-title {
+    font-size: 16px;
+    color: #ddd;
+    font-weight: bold;
+}
+
+.album-artist {
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 5px;
+}
+
+.following-artists-live {
+    height: 250px;
+}
+
+/* 공통: 추천 차트 및 라이브 섹션 */
+.chart-list,
+.live-list {
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll; /* 가로 스크롤 가능 */
+    padding-bottom: 10px;
+    -ms-overflow-style: none; /* IE와 Edge에서 스크롤바 숨기기 */
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+}
+
+.chart-list::-webkit-scrollbar,
+.live-list::-webkit-scrollbar {
+    display: none; /* Chrome, Safari에서 스크롤바 숨기기 */
+}
+
+.chart-card,
+.live-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: inherit;
+    border-radius: 10px;
+    padding: 10px;
+    width: 150px;
+    transition: transform 0.3s ease, box-shadow 0.3s;
+}
+
+.chart-card:hover,
+.live-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.chart-image img,
+.live-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 2px solid #555;
+    transition: border-color 0.3s;
+}
+
+.chart-image img:hover,
+.live-image img:hover {
+    border-color: #888;
+}
+
+.chart-name,
+.live-name {
+    font-size: 16px;
+    color: #ddd;
+}
+
+
+/* 공통: 스크롤바 숨김 용 유틸 */
+.no-scrollbar {
+    -ms-overflow-style: none;    /* IE/Edge */
+    scrollbar-width: none;       /* Firefox */
+    overscroll-behavior-x: contain; /* 스크롤 체이닝 방지 */
+    scroll-behavior: smooth;        /* 부드러운 스크롤 */
+    -webkit-overflow-scrolling: touch; /* iOS inertia */
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;               /* Chrome/Safari */
+}
+
+/* 이미 있는 .artist-list / .album-list에 유지할 것들 */
+.artist-list,
+.album-list {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;  /* scroll -> auto 로 변경 권장 */
+    padding-bottom: 10px;
+    flex-wrap: nowrap;
+}
+
+/* 카드 폭이 너무 크면 한 화면에 항목 적게 보이니 필요시 조정 */
+.artist-card,
+.album-card {
+    width: 150px;
+}
+

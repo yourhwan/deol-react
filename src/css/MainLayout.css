@@ -1,0 +1,416 @@
+/* src/css/MainLayout.css */
+
+/* ─── 검색 결과 드롭다운 ─────────────────────────────────────────────────── */
+
+/* 검색 결과 드롭다운 */
+.search-results-dropdown {
+    position: absolute;         /* 부모(.main-search-container)가 relative 여야 합니다. */
+    top: calc(100% + 5px);      /* 검색창 바로 아래에 붙도록 */
+    left: 0;
+    right: 0;
+    background: #1b1b1b;        /* 뒤 배경 어둡게 */
+    border-radius: 0 0 8px 8px; /* 아래쪽만 둥글게 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    max-height: 300px;          /* 최대 높이 */
+    overflow-y: auto;           /* 스크롤 가능 */
+    z-index: 1001;              /* 상단바보다 위에 렌더링 */
+}
+
+/* 각 검색 섹션 제목 */
+.search-section {
+    margin-top: 8px;
+    padding: 4px 0;
+}
+
+/* 섹션 헤더 (예: “아티스트”, “앨범”, “트랙”) */
+.section-header {
+    color: #aaa;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 15px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 4px;
+}
+
+/* 검색 결과 항목 공통 */
+.search-results-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 14px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.search-results-item:hover {
+    background-color: #2c2c2c;
+    color: #fff;
+}
+
+/* ─── 아티스트 항목 ─────────────────────────────────────────────────────────── */
+.artist-item .search-artist-thumb {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.search-artist-name {
+    font-weight: 500;
+}
+
+/* ─── 앨범 항목 ─────────────────────────────────────────────────────────────── */
+.album-item .search-album-thumb {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.search-album-title {
+    font-weight: 400;
+}
+
+/* ─── 트랙 항목 ─────────────────────────────────────────────────────────────── */
+.track-item .search-track-thumb {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.search-track-title {
+    font-weight: 300;
+}
+
+/* .main-search-container 를 position: relative로 지정해야 드롭다운이 잘 붙습니다. */
+.main-search-container {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* 검색창 위 아래 레이아웃을 세로로 */
+    margin-top: 10px;
+    gap: 5px; /* 검색창과 드롭다운 사이 간격 */
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* 지금부터 기존 CSS 내용 (검색 결과 외 나머지 스타일) ─────────────────────── */
+
+/* 기본 스타일 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.side-menu-name-sector {
+    display: flex;             /* 수평 정렬 */
+    align-items: center;       /* 수직 가운데 정렬 */
+    gap: 8px;                  /* 아이콘과 텍스트 사이 간격 */
+    padding: 8px 0;
+    color: #bbb;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.side-menu-name {
+    margin-top: 12px;
+}
+
+/* 마이 메뉴 섹션 */
+.my-menu-section {
+    margin-top: 30px;
+    margin-right: 14px;
+}
+
+.my-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #bbb;
+    font-size: 14px;
+    padding: 10px 5px;
+    cursor: pointer;
+}
+
+.my-menu-title {
+    flex-grow: 1;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: -10px;
+    padding-left: 5px;
+}
+
+.my-menu-toggle {
+    margin-bottom: -10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.my-menu-items {
+    display: flex;
+    flex-direction: column;
+    background: #1b1b1b;
+    border-radius: 12px;
+    padding: 10px;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.my-menu-item {
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.my-menu-item:hover {
+    background-color: #2c2c2c;
+}
+
+/* 전체 레이아웃 설정 */
+.main-layout {
+    display: flex;
+    height: 100vh;
+    color: white;
+    margin-top: 0px;
+    background: #000000;
+    overflow: hidden; /* 페이지 전체에서 스크롤을 막음 */
+}
+
+/* 상단바 스타일 */
+.main-top-bar {
+    position: fixed;
+    left: 300px; /* 사이드바 너비만큼 왼쪽으로 밀어서 시작 */
+    right: 0;
+    height: 72px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #000000;
+    padding: 0px 30px 0px 10px;
+    z-index: 1000;
+    border-radius: 15px 15px 0 0;
+    width: calc(100% - 300px); /* 사이드바 너비를 제외한 나머지 공간 차지 */
+}
+
+.main-search-container {
+    position: relative; /* 검색창과 검색 버튼을 상대적으로 배치 */
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 5px; /* 버튼과 검색창 사이의 간격 조정 */
+}
+
+/* 검색창 영역 */
+.main-search-bar {
+    display: flex;
+    align-items: center;
+    background: #2c2c2c;
+    border-radius: 25px;
+    padding: 0px 10px;
+    flex-grow: 1;
+    margin: 0 70px;
+    max-width: 800px; /* 최대 너비 설정 */
+    min-width: 300px; /* 최소 너비 설정 */
+}
+
+.search-icon {
+    color: #ccc;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.search-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #ccc;
+    font-size: 14px;
+}
+
+/* 포커스 상태에서의 스타일 제거 */
+input:focus {
+    outline: none;
+    border: none;
+    background: transparent;
+    box-shadow: none; /* 그림자 제거 */
+}
+
+/*.search-input::placeholder {*/
+/*    color: #888;*/
+/*}*/
+
+/* 브라우저 기본 포커스 효과 제거 (특히 크롬, 사파리 등) */
+.search-input:-webkit-autofill,
+.search-input:focus-visible {
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background-color: inherit;
+}
+
+/* 사이드바 스타일 */
+.main-sidebar {
+    width: 300px;
+    background: #000000;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+    top: 0px; /* 상단바 아래부터 시작 */
+    left: 0px;
+}
+
+.main-inner-sidebar {
+    background: #121212;
+    border-radius: 15px;
+    padding: 5px 5px 5px 20px;
+    height: 91vh;  /* 내용에 따라 높이가 자동으로 결정되도록 수정 */
+    max-height: calc(100vh - 80px); /* 상단바 높이를 제외한 최대 높이 */
+    overflow-y: auto; /* 내용물이 길어지면 스크롤 가능 */
+}
+
+/* 스크롤바 숨기기 */
+.main-inner-sidebar::-webkit-scrollbar {
+    display: none; /* 스크롤바를 숨깁니다 */
+}
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    flex: 1;
+    margin-left: 300px; /* 사이드바 너비만큼 공간을 할당 */
+    margin-top: 43px;   /* 상단바 높이만큼 공간을 할당 */
+    padding: 20px;
+    background: #121212;
+    overflow-y: auto;   /* 긴 콘텐츠에 대해 스크롤 가능 */
+}
+
+/* 상단바 버튼 스타일 */
+.main-top-bar-buttons button {
+    background: #000000;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    margin-top: -9px;
+}
+
+/* 사용자 섹션 */
+.main-user-section {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.username {
+    color: white;
+    font-size: 16px;
+}
+
+/* 사이드바 메뉴 스타일 */
+.side-menu-list {
+    list-style: none;
+    padding: 20px;
+}
+
+.side-menu-list li {
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+/* 로고를 상단에 고정 */
+.logo-container-side {
+    position: sticky;   /* 상단에 고정 */
+    top: 0;             /* 스크롤 시 상단에 고정 */
+    z-index: 1000;      /* 다른 요소 위에 오도록 설정 */
+    margin-bottom: 13px; /* 로고와 다른 요소 간의 간격 */
+    cursor: pointer;
+}
+
+.logo-circle-side {
+    width: 40px; /* 로고 크기 조정 */
+}
+
+.logo-main-side {
+    padding-left: 5px;
+    width: 70px; /* 로고 크기 조정 */
+}
+
+/* 나의 플레이리스트 목록 */
+/* 🔽 나의 플레이리스트 섹션 */
+.my-playlist-section {
+    margin-top: 20px;
+    margin-right: 14px;
+    color: #bbb;
+}
+
+.my-playlist-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    padding-left: 5px;
+}
+
+/* 플레이리스트 박스 스타일 */
+.my-playlist-box {
+    background-color: #1b1b1b;
+    padding: 12px 12px 12px 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 250px;        /* ✅ 최대 높이 제한 */
+    overflow-y: auto;         /* ✅ 넘치면 세로 스크롤 */
+
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE, Edge */
+}
+
+.my-playlist-box::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+/* 각 플레이리스트 항목 */
+.playlist-item {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.playlist-item:hover {
+    color: #1db954; /* Spotify 느낌 초록 강조 */
+}
+
+/* 펼치기/접기 토글 */
+.playlist-toggle {
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+    color: #aaa;
+    transition: transform 0.2s ease;
+}
+
+.playlist-toggle:hover {
+    color: #fff;
+}

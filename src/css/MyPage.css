@@ -1,0 +1,122 @@
+.mypage-container {
+    padding: 16px;
+    color: #fff;
+}
+
+.mypage-header {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.mypage-header-left .mypage-profile-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 2px solid #555;
+    border-radius: 50%;
+}
+
+.mypage-header-right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mypage-nickname {
+    margin: 0;
+}
+
+.mypage-edit-button {
+    background: #1db954;
+    border: none;
+    color: #000;
+    padding: 8px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.mypage-section {
+    margin-top: 24px;
+}
+
+.mypage-section h2 {
+    margin-bottom: 12px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 8px;
+}
+
+/* 가로 스크롤 공용 래퍼 */
+.mypage-horizontal-scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;           /* 가로 스크롤 */
+    padding-bottom: 8px;
+    scroll-behavior: smooth;    /* 부드러운 스크롤 */
+    overscroll-behavior-x: contain; /* 스크롤 체이닝 방지 */
+    -webkit-overflow-scrolling: touch; /* iOS inertia */
+}
+
+/* 스크롤바 숨김 유틸 */
+.no-scrollbar {
+    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none;    /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;            /* Chrome/Safari */
+}
+
+/* 팔로잉 아바타 */
+.mypage-circle-avatar {
+    width: 110px;
+    flex: 0 0 auto;
+    text-align: center;
+    cursor: pointer;
+    transition: transform .2s ease;
+}
+.mypage-circle-avatar:hover {
+    transform: scale(1.03);
+}
+.mypage-circle-avatar img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 2px solid #555;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 8px;
+}
+.mypage-circle-avatar span {
+    display: block;
+    font-size: 14px;
+    color: #ddd;
+}
+
+/* 카드형 목록(플레이리스트/앨범 공용) */
+.mypage-album-card {
+    width: 150px;
+    flex: 0 0 auto;
+    text-align: center;
+    background: transparent;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.mypage-album-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0,0,0,.4);
+}
+.mypage-album-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 2px solid #555;
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 8px;
+}
+.mypage-album-card div {
+    color: #ddd;
+    font-size: 14px;
+}

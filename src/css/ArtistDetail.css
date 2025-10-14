@@ -1,0 +1,443 @@
+body {
+    padding-bottom: 80px; /* FooterPlayer 높이만큼 여백 추가 */
+    font-family: Arial, sans-serif;
+    overflow-y: auto;
+}
+
+.main-content {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    height: auto; /* 콘텐츠에 따라 높이 조정 */
+}
+
+/* 아티스트 상세 페이지 컨테이너 */
+.artist-detail-container {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #121212;
+    padding: 20px 10px 20px 10px;
+    margin-top: 10px;
+    margin-left: -20px;
+    border-radius: 20px;
+    /*max-height: calc(100vh - 80px); !* 푸터 영역을 고려한 max-height *!*/
+    overflow-y: auto; /* 스크롤 추가 */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 섹션 간의 간격 */
+}
+
+.artist-detail-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari에서 스크롤바 숨기기 */
+}
+
+/* 아티스트 정보 섹션 */
+.artist-detail-artist-info {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+    height: 450px;
+    min-height: 350px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    position: relative; /* 자식 요소를 절대 위치로 배치할 때 필요 */
+    aspect-ratio: 16/9;  /* 원하는 비율로 설정 (예: 16:9 비율) */
+}
+
+.artist-detail-artist-profile-image {
+    position: absolute; /* 이미지를 부모 div에 맞게 절대 위치 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: contain;  /* 이미지 비율을 유지하면서 부모 div에 꽉 차도록 설정 */
+}
+
+.artist-detail-artist-info-text {
+    position: absolute;
+    top: 75%; /* 중간 위치 */
+    left: 70px;
+    transform: translateY(-50%); /* 수직 중앙 정렬 */
+    color: white;
+    font-size: 80px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.artist-detail-artist-info-name {
+    font-size: 70px;
+    font-weight: bold;
+    color: white;
+    text-shadow:
+            -1px -1px 0 black, 1px -1px 0 black,
+            -1px  1px 0 black, 1px  1px 0 black,
+            0px -1px 0 black, 0px  1px 0 black,
+            -1px  0px 0 black, 1px  0px 0 black;
+
+}
+
+/* 신규 발매 섹션 */
+.artist-detail-latest-album {
+    margin-top: 20px;
+}
+
+/* 신규 발매 앨범 카드 스타일 */
+.artist-detail-latest-album-item {
+    display: flex;
+    gap: 15px;
+    align-items: center; /* 이미지와 텍스트가 수평 정렬되도록 설정 */
+    padding: 20px 0px 0px 0px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 카드에 그림자 효과 추가 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 호버 효과 */
+}
+
+.artist-detail-latest-album-item:hover {
+    transform: scale(1.05); /* 호버 시 크기 확대 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* 호버 시 그림자 효과 강화 */
+}
+
+/* 앨범 커버 이미지 스타일 */
+.artist-detail-latest-album-cover-image {
+    width: 100px; /* 앨범 이미지 크기 조절 */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px; /* 둥근 모서리 */
+    border: 2px solid #555; /* 이미지 테두리 색상 */
+}
+
+/* 앨범 제목과 날짜 */
+.artist-detail-latest-album-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.artist-detail-latest-album-info span {
+    font-size: 12px;
+    /*font-weight: bold;*/
+    color: #AAAAAA;
+}
+.artist-detail-latest-album-info h3 {
+    font-size: 16px;
+    font-weight: bolder;
+    margin: 0;
+}
+
+/* +추가 버튼 스타일 */
+.artist-detail-latest-album-info .add-button {
+    background-color: #8c3131;
+    color: #e0e0e0;
+    padding: 5px 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 60px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.artist-detail-latest-album-info .add-button:hover {
+    background-color: darkred;
+}
+
+
+/* 인기 트랙 섹션 */
+/* TopTrack의 곡 목록 */
+.artist-detail-top-tracks {
+    display: flex;
+    margin-top: 15px;
+    flex-direction: column; /* 세로 정렬 */
+    gap: 20px; /* 곡 간 간격 */
+}
+
+.album-list {
+    padding: 20px 0px 0px 0px;
+    margin-left: -20px;
+}
+/* 각 곡 항목 스타일 */
+.top-track-item {
+    display: flex;
+    align-items: center; /* 이미지와 텍스트 수평 정렬 */
+    justify-content: space-between; /* 좌우 정렬 */
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #1c1c1c; /* 배경색 */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 카드에 그림자 효과 추가 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 호버 효과 */
+    width: 450px;
+    position: relative; /* 드롭다운을 감싸는 부모에 position: relative 지정 */
+}
+
+.top-track-item:hover {
+    /*transform: scale(1.05); !* 호버 시 크기 확대 *!*/
+    /*transform: translateX(-10px); !* 호버 시 좌측으로 슬라이드 *!*/
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* 호버 시 그림자 효과 강화 */
+}
+
+/* 이미지 영역 */
+.top-track-image {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+}
+
+.top-track-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* 곡 정보 */
+.top-track-info {
+    flex-grow: 1; /* 텍스트가 나머지 공간을 차지 */
+}
+
+.top-track-title {
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+}
+
+.top-track-artist {
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* 드롭다운 버튼 */
+.top-track-options {
+    display: flex;
+    align-items: center;
+}
+
+.top-track-dropdown-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.top-track-dropdown-button:hover {
+    color: #f00; /* 마우스 hover 시 빨간색으로 강조 */
+}
+
+.artist-detail-top-tracks-album-cover {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.artist-detail-top-tracks-title {
+    font-size: 1.2em;
+    color: white;
+}
+
+/* 신규 발매와 인기 트랙을 감싸는 부모 div */
+.artist-detail-top-sections {
+    display: flex;
+    gap: 20px; /* 두 섹션 사이의 간격 */
+    justify-content: space-between; /* 섹션이 균등하게 배치되도록 */
+    width: 100%; /* 부모 div가 전체 너비를 차지하도록 설정 */
+    margin: 20px 0px 0px 75px;
+}
+
+/* 신규 발매와 인기 트랙 각각의 스타일 */
+.artist-detail-latest-album,
+.artist-detail-top-tracks {
+    display: flex;
+    flex-direction: column;
+    width: 48%; /* 각 섹션의 너비 설정 */
+}
+
+/* 앨범 목록 */
+.artist-detail-all-albums {
+    margin: 20px 0px 0px 75px;
+}
+
+.artist-detail-all-album-list {
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll; /* 가로 스크롤 가능 */
+    padding-bottom: 10px;
+    -ms-overflow-style: none; /* IE와 Edge에서 스크롤바 숨기기 */
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+}
+
+.artist-detail-album-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: inherit;
+    border-radius: 10px;
+    padding: 10px;
+    width: 150px;
+    transition: transform 0.3s ease, box-shadow 0.3s;
+}
+
+.artist-detail-album-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.artist-detail-album-image img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 10%;
+    border: 2px solid #555;
+    transition: border-color 0.3s;
+}
+
+.artist-detail-album-image img:hover {
+    border-color: #888;
+}
+
+.artist-detail-album-title {
+    font-size: 16px;
+    color: #ddd;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.artist-detail-album-artist {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.artist-detail-all-album-cover {
+    width: 100px;
+}
+
+.album-info h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.album-info p {
+    font-size: 1em;
+}
+
+.live-broadcast .broadcast-item {
+    display: flex;
+    align-items: center;
+}
+
+.broadcast-item img {
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+}
+
+.broadcast-info h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.broadcast-info p {
+    font-size: 1.2em;
+}
+
+.artist-detail-track-album-cover {
+    width: 100px;
+}
+
+.dropdown-trigger {
+    margin-right: 20px;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute; /* 드롭다운은 부모를 기준으로 위치 지정 */
+    top: 70%; /* 예를 들어, 부모 아래에 위치 */
+    /*left: 50%;*/
+    right: 9%;
+    background-color: #252525 !important;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    padding: 10px;
+    flex-direction: column;
+    gap: 10px;
+    display: block !important; /* 항상 보이도록 기본값 설정 */
+    z-index: 10; /* 드롭다운 항목도 최상단에 위치 */
+    /*top: 50px;*/
+
+
+}
+
+.dropdown-menu-list {
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: #252525;
+    color: #A7A7A7;
+}
+
+.dropdown-menu-list:hover {
+    color:white;
+}
+
+.playlist-submenu-left {
+    position: absolute;
+    top: -9px !important;
+    left: -102%;
+    margin-right: 1px;
+    background: #222222;
+    border: 1px solid #444;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    padding: 6px;
+    min-width: 160px;
+    z-index: 9999;
+}
+
+.playlist-submenu-item {
+    padding: 6px 12px;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.playlist-submenu-item:hover {
+    background-color: #444;
+    color: white;
+}
+
+
+/* 팔로우 버튼 */
+.follow-button-wrapper {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    z-index: 10;
+}
+
+.follow-button-wrapper button {
+    padding: 15px 20px;
+    background-color: darkred;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.follow-button-wrapper button:hover {
+    background-color: #8c3131;
+    transform: scale(1.05);
+}
+
+
+
+/*반응형 테스트*/

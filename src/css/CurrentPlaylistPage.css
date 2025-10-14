@@ -1,0 +1,198 @@
+.track-dropdown-wrapper {
+    position: relative;
+    padding: 5px 10px 10px 10px;
+}
+
+.dropdown-trigger-track {
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: #ccc;
+}
+
+.current-chart-dropdown-menu-track {
+    position: absolute;
+    top: 50%;
+    right:55%;
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 0.25rem 0;
+    width: 165px;
+    z-index: 9999;
+    pointer-events: auto;
+}
+
+.current-chart-dropdown-menu-item-track {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #ccc;
+    position: relative;
+}
+
+.current-chart-dropdown-menu-item-track:hover {
+    background-color: #333;
+}
+
+.current-chart-dropdown-menu-item-track .current-playlist-submenu {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    margin-left: 1px;
+    background: #222222;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 6px 0;
+    min-width: 160px;
+    display: none;
+    z-index: 10000;
+}
+
+.current-chart-dropdown-menu-item-track:hover .current-playlist-submenu {
+    display: block;
+}
+
+.current-playlist-submenu-item {
+    padding: 6px 12px;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.current-playlist-submenu-item:hover {
+    background-color: #444;
+    color: #ccc;
+}
+
+.current-playlist-wrapper {
+    display: flex;
+    height: 100%;
+    background-color: #111;
+    color: #fff;
+}
+
+.current-playing-info {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.current-playing-cover {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.current-playing-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.current-playing-artist {
+    font-size: 18px;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.current-playing-lyrics {
+    margin-top: 20px;
+    text-align: center;
+    white-space: pre-line;
+    line-height: 1.8;
+    font-size: 16px;
+    color: #aaa;
+    max-width: 400px;
+}
+
+.current-playlist-track-list {
+    flex: 0.45;
+    border-left: 1px solid #333;
+    padding: 20px 30px;
+    overflow-y: auto;
+    background-color: #181818;
+}
+
+.current-playlist-header {
+    margin: 16px 0px 16px 0px;
+}
+
+.current-playlist-header h2 {
+    margin-bottom: 16px;
+    font-size: 24px;
+}
+
+.current-playlist-track-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.current-playlist-track-cover {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 16px;
+}
+
+.current-playlist-track-info {
+    flex-grow: 1;
+}
+
+.current-playlist-track-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.current-playlist-track-artist {
+    font-size: 14px;
+    color: #bbb;
+}
+
+.current-playlist-track-duration {
+    font-size: 14px;
+    color: #bbb;
+    margin-left: auto;
+}
+
+.current-playlist-track-item.playing {
+    background-color: #333;
+}
+
+.current-playlist-track-item:hover {
+    background-color: #222;
+}
+
+.playing-indicator {
+    color: #1db954;
+    font-weight: bold;
+    margin-left: 6px;
+}
+
+.current-playlist-track-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.current-playlist-track-list::-webkit-scrollbar-track {
+    background: #181818;
+}
+
+.current-playlist-track-list::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 4px;
+}
+
+.current-playlist-track-list {
+    scrollbar-color: #444 #181818;
+    scrollbar-width: thin;
+}
