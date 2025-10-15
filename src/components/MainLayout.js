@@ -378,6 +378,7 @@ const MainLayout = ({ children }) => {
                 </div>
             </aside>
 
+
             {/* ─── 플레이리스트 생성 모달 ──────────────────────────────────── */}
             <PlaylistModal
                 isOpen={isModalOpen}
