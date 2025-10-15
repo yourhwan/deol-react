@@ -1,6 +1,6 @@
 // src/components/MainLayout.jsx
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../css/MainLayout.css';
 import { IoSearchSharp, IoChevronDown, IoChevronUp } from 'react-icons/io5';
 import { IoIosArrowDropleft, IoIosArrowDropright } from 'react-icons/io';
@@ -16,7 +16,6 @@ import { CustomToast } from '../utils/CustomToast';
 
 const MainLayout = ({ children }) => {
     const navigate = useNavigate();
-    const location = useLocation();
 
     // ─── 모달 / 메뉴 토글 상태 ─────────────────────────────────────────
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,11 +46,12 @@ const MainLayout = ({ children }) => {
 
     // ─── 닉네임·프로필 불러오기 ───────────────────────────────────────
     useEffect(() => {
-        if (!user.isLoggedIn) {
+        if (!user?.isLoggedIn) {
             setNickname('');
             setProfileImage('');
             return;
         }
+
         Promise.all([
             axios.get('/api/mypage/nickname', {
                 headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
@@ -67,15 +67,9 @@ const MainLayout = ({ children }) => {
             .catch((err) => console.error('프로필 로드 실패', err));
 
         fetchMyPlaylists();
-    }, [user.isLoggedIn, fetchMyPlaylists]);
-
-    if (loading) return <div>로딩 중...</div>;
-
-    const handleLogin = () => navigate('/login');
-    const handleSignup = () => navigate('/signup/home');
+    }, [user?.isLoggedIn, fetchMyPlaylists]);
 
     // ─── 입력 즉시 자동 검색(디바운스 300ms) ───────────────────────────
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
         const kw = searchInput.trim();
 
@@ -159,6 +153,7 @@ const MainLayout = ({ children }) => {
         clearSearch();
     };
     const onTrackClick = (id) => {
+        // 트랙 클릭 시 앨범 상세로 이동하는 기존 로직 유지
         navigate(`/album/${id}/details`);
         clearSearch();
     };
@@ -204,6 +199,9 @@ const MainLayout = ({ children }) => {
 
     return (
         <div className="main-layout">
+            {/* 로딩일 때도 훅은 이미 호출된 상태이므로, UI만 조건부로 표시 */}
+            {loading && <div className="loading-overlay">로딩 중...</div>}
+
             {/* ─── 상단바 ──────────────────────────────────────────────── */}
             <header className="main-top-bar">
                 <div className="main-top-bar-buttons">
@@ -290,7 +288,7 @@ const MainLayout = ({ children }) => {
                 </div>
 
                 <div className="top-bar-profile">
-                    {user.isLoggedIn && (
+                    {user?.isLoggedIn && (
                         <div className="main-user-section" onClick={() => navigate('/mypage')}>
                             <img src={profileImage || defaultProfileImage} alt="프로필" className="profile-image" />
                             <span className="username">{nickname || '사용자'}</span>
@@ -309,7 +307,7 @@ const MainLayout = ({ children }) => {
                     <div className="side-menu-name-sector">
                         <VscLibrary /> <p className="side-menu-name">나의 라이브러리</p>
                     </div>
-                    {user.isLoggedIn && (
+                    {user?.isLoggedIn && (
                         <div className="my-playlist-section">
                             <p className="my-playlist-title">나의 플레이리스트</p>
                             <div className="my-playlist-box">
@@ -344,12 +342,12 @@ const MainLayout = ({ children }) => {
                         </div>
                         {isMyMenuOpen && (
                             <div className="my-menu-items">
-                                {user.isLoggedIn ? (
+                                {user?.isLoggedIn ? (
                                     <>
                                         <div className="my-menu-item" onClick={() => navigate('/mypage')}>
                                             마이 페이지
                                         </div>
-                                        {user.isArtist && (
+                                        {user?.isArtist && (
                                             <div className="my-menu-item" onClick={() => navigate('/upload/album')}>
                                                 앨범 업로드
                                             </div>
@@ -366,10 +364,10 @@ const MainLayout = ({ children }) => {
                                     </>
                                 ) : (
                                     <>
-                                        <div className="my-menu-item" onClick={handleSignup}>
+                                        <div className="my-menu-item" onClick={() => navigate('/signup/home')}>
                                             회원가입
                                         </div>
-                                        <div className="my-menu-item" onClick={handleLogin}>
+                                        <div className="my-menu-item" onClick={() => navigate('/login')}>
                                             로그인
                                         </div>
                                     </>
