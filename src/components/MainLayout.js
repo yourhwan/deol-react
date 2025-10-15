@@ -77,7 +77,7 @@ const MainLayout = ({ children }) => {
     // ─── 입력 즉시 자동 검색(디바운스 300ms) ───────────────────────────
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-        const kw = searchInput.ritm();
+        const kw = searchInput.trim();
 
         // 이전 타이머/요청 취소
         if (debounceRef.current) clearTimeout(debounceRef.current);
